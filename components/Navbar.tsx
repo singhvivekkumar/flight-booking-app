@@ -34,7 +34,7 @@ const Navbar = () => {
 	}
 
   	return (
-	<header>
+	<header className="w-full lg:px-32 md:px-12 sm:px-8 py-10 font-medium flex items-center justify-between dark:text-light relative ">
 
 		{/* Hamburger menu */}
 		<button className="  flex-col justify-center items-center hidden lg:flex " onClick={handleClick}>
@@ -44,12 +44,14 @@ const Navbar = () => {
 		</button>
 
 		{/* nav bar for destop */}
-		<nav>
-			<CustomeLink href="/" title="Home" className=" mr-4 "/>
-			<CustomeLink href="/about" title="About" className=" mx-4 "/>
-			<CustomeLink href="/projects" title="Projects" className=" mx-4 "/>
-			<CustomeLink href="/articles" title="Articles" className=" ml-4 "/>
-		</nav>
+		<div className=" w-full flex justify-between items-center ">
+			<nav>
+				<CustomeLink href="/" title="Home" className=" mr-4 "/>
+				<CustomeLink href="/about" title="About" className=" mx-4 "/>
+				<CustomeLink href="/projects" title="Projects" className=" mx-4 "/>
+				<CustomeLink href="/articles" title="Articles" className=" ml-4 "/>
+			</nav>
+		</div>
 	</header>
   )
 }

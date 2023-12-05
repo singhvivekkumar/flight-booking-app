@@ -3,8 +3,8 @@ import React from 'react'
 
 const page = () => {
   return (
-	<div>
-    <Navbar/>
+	<div className=' text-3xl'>
+    Page
   </div>
   )
 }
