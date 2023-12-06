@@ -52,6 +52,7 @@ const Navbar = () => {
 				<CustomeLink href="/articles" title="Articles" className=" ml-4 "/>
 			</nav>
 		</div>
+		
 	</header>
   )
 }
