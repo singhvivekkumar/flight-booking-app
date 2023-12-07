@@ -43,13 +43,14 @@ const Navbar = () => {
 			<span className={`bg-dark dark:bg-light transition-all duration-300 ease-out h-0.5 block w-6 rounded-sm -translate-y-0.5 ${isOpen ? " -rotate-45 -translate-y-1": " translate-y-0.5"}`}></span>
 		</button>
 
+		{/* logo */}
+
 		{/* nav bar for destop */}
 		<div className=" w-full flex justify-between items-center ">
 			<nav>
-				<CustomeLink href="/" title="Home" className=" mr-4 "/>
-				<CustomeLink href="/about" title="About" className=" mx-4 "/>
-				<CustomeLink href="/projects" title="Projects" className=" mx-4 "/>
-				<CustomeLink href="/articles" title="Articles" className=" ml-4 "/>
+				<CustomeLink href="/" title="Flights" className=" mr-4 "/>
+				<CustomeLink href="/" title="Trains" className=" mx-4 "/>
+				<CustomeLink href="/articles" title="Bus" className=" ml-4 "/>
 			</nav>
 		</div>
 		

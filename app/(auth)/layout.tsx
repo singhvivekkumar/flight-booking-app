@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import { Providers } from '../providers'
 
 export const metadata = {
   title: 'flight booking app',
@@ -13,9 +14,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark ">
-          {children}
-        </main>
+        <Providers>
+          <main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark ">
+              {children}
+          </main>
+        </Providers>
       </body>
     </html>
   )

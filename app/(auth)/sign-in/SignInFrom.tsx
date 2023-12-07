@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as z from  "zod";
 import axios from "axios";
@@ -30,9 +30,18 @@ const SignInForm: React.FC = () => {
 			.regex(/[a-zA-Z]/, "Password can only contain Latin letters."),
 	});
 
-	const handleSubmit = (values: FormValues) => {
-		console.log("api gateway ", API_URL, values)
-		// router.push("/");
+  useEffect( ()=> {}, [])
+
+	const handleSubmit = async (values: FormValues) => {
+    try {
+      const response = await axios.post("http://localhost:3005/auth/api/v1/signin", values);
+      console.log("api data ", response.data)
+      if (response.data.success) {
+        router.push("/");
+      } 
+    } catch (error) {
+      console.log("problem in api", error)
+    }
 	};
 
 	return(
@@ -58,7 +67,6 @@ const SignInForm: React.FC = () => {
 					validationSchema={toFormikValidationSchema(validationSchema)}
 					onSubmit={handleSubmit}>
 					{(props) => {
-						console.log(props);
 						return (
 							<Form className=" bg-white rounded-2xl p-5 px-7 w-full  " onSubmit={props.handleSubmit}>
 								<div className=" flex flex-col justify-start items-baseline space-x-1 mb-5 ">
