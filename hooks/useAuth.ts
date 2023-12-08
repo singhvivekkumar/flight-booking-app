@@ -1,7 +1,7 @@
 import { useUser } from "./useUser";
 import { AUTH_URL } from "@/utils/config";
 import axios from "axios";
-import { AuthResponse, TLogin, TRegister } from "@/types/auth";
+import { AuthResponse, Login, Register } from "@/types/auth";
 import useCookie from "./useCookie";
 
 export const useAuth = () => {
@@ -23,11 +23,13 @@ export const useAuth = () => {
     }
   };
 
-  const register = async (creds: TRegister) => {
+  const register = async (creds: Register) => {
     return await axios
       .post(`${AUTH_URL}/signup`, creds)
       .then((res) => {
-        if (res.data?.data && res.data.data?.token) addUser(res.data.data);
+        if (res.data?.data && res.data.data?.token) {
+          addUser(res.data.data);
+        };
         return res.data as AuthResponse;
       })
       .catch((err) => {
@@ -37,11 +39,13 @@ export const useAuth = () => {
       });
   };
 
-  const login = async (creds: TLogin) => {
+  const login = async (creds: Login) => {
     return await axios
       .post(`${AUTH_URL}/signin`, creds)
       .then((res) => {
-        if (res.data?.data && res.data.data?.token) addUser(res.data.data);
+        if (res.data?.data && res.data.data?.token) {
+          addUser(res.data.data);
+        };
         return res.data as AuthResponse;
       })
       .catch((err) => {

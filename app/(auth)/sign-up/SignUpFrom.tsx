@@ -6,18 +6,16 @@ import * as z from  "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toFormikValidationSchema } from "zod-formik-adapter";
+import { useAuth } from "@/hooks/useAuth";
+import { Register } from "@/types/auth";
 
-interface FormValues  {
-	email: string;
-  name: string;
-	password: string;
-}
 
 const SignUpForm: React.FC = (  ) => {
 
+  const { register } = useAuth();
 	const router = useRouter();
 
-	const initialValues: FormValues = {
+	const initialValues: Register = {
 		email: "",
 		name: "",
 		password: "",
@@ -31,11 +29,11 @@ const SignUpForm: React.FC = (  ) => {
 			.regex(/[a-zA-Z]/, "Password can only contain Latin letters."),
 	});
 
-	const handleSubmit = async (values: FormValues) => {
+	const handleSubmit = async (values: Register) => {
 		try {
-			const response = await axios.post("http://localhost:3005/auth/api/v1/signup", values);
+			const response = await register(values);
 			console.log("api data ", values, response.data)
-			if (response.data.success) {
+			if (response.success) {
 			  router.push("/");
 			} 
 		  } catch (error) {

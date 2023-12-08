@@ -1,15 +1,14 @@
-export type TUser = {
+export type User = {
 	email: string;
-	firstName: string;
-	lastName: string;
+	name: string;
   };
   
   export type AuthUser = {
 	token: string;
-	user: TUser;
+	user: User;
   };
   
-  export type TLogin = {
+  export type Login = {
 	email: string;
 	password: string;
   };
@@ -18,4 +17,10 @@ export type TUser = {
 	message: string;
 	data?: AuthUser;
 	success?: boolean;
+  };
+
+  export type Register = {
+	email: string;
+	name: string;
+	password: string;
   };

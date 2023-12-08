@@ -1,1 +1,1 @@
-export const AUTH_URL = `${process.env.API_GATEWAY}/auth/api/v1`;
+export const AUTH_URL = `http://localhost:3005/auth/api/v1`;

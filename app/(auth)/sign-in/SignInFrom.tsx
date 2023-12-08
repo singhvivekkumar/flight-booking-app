@@ -3,22 +3,20 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as z from  "zod";
-import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { BsApple } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { toFormikValidationSchema } from "zod-formik-adapter";
-
-interface FormValues  {
-	email: string;
-	password: string;
-}
+import { useAuth } from "@/hooks/useAuth";
+import { Login } from "@/types/auth";
 
 const SignInForm: React.FC = () => {
 
 	const router = useRouter();
-	const API_URL = process.env.API_GATEWAY
-	const initialValues: FormValues = {
+
+  const { login } = useAuth();
+
+	const initialValues: Login = {
 		email: "",
 		password: "",
 	};
@@ -32,14 +30,15 @@ const SignInForm: React.FC = () => {
 
   useEffect( ()=> {}, [])
 
-	const handleSubmit = async (values: FormValues) => {
+	const handleSubmit = async (values: Login) => {
     try {
-      const response = await axios.post("http://localhost:3005/auth/api/v1/signin", values);
-      console.log("api data ", response.data)
-      if (response.data.success) {
+      const response = await login(values);
+      console.log("api data ", response)
+      if (response.success) {
         router.push("/");
       } 
     } catch (error) {
+      // call toaster
       console.log("problem in api", error)
     }
 	};

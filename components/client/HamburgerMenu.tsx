@@ -2,7 +2,11 @@
 
 import React, { useState } from 'react'
 
-const HamburgerMenu = () => {
+interface Props {
+
+}
+
+const HamburgerMenu = ( ) => {
 
 	const [ isOpen,setIsOpen] = useState(false);
 
