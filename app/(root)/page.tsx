@@ -1,11 +1,12 @@
-import Navbar from '@/components/Navbar'
+import MainContainer from '@/components/MainContainer'
 import React from 'react'
 
 const page = () => {
   return (
-	<div className=' text-3xl'>
-    Page
-  </div>
+	<section className=''>
+    {/* main contianer */}
+    <MainContainer/>
+  </section>
   )
 }
 

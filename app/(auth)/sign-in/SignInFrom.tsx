@@ -74,6 +74,7 @@ const SignInForm: React.FC = () => {
 									</label>
 									<Field
 										name="email"
+										type="email"
 										placeholder="Email"
 										className=" bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 									/>
@@ -92,6 +93,7 @@ const SignInForm: React.FC = () => {
 									</label>
 									<Field
 										name="password"
+										type="password"
 										placeholder="Enter password "
 										className="bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 									/>

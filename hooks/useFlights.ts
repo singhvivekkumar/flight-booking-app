@@ -1,10 +1,10 @@
 import { useUser } from "./useUser";
-import { BOOKING_URL, SEARCH_URL } from "@/utils/config";
+import { SEARCH_URL } from "@/utils/config";
 import axios from "axios";
-import { AuthResponse, Login, Register } from "@/types/auth";
 import useCookie from "./useCookie";
+import { SearchResponse, SearchDetails } from "@/types/flight";
 
-export const useAuth = () => {
+export const useFlights = () => {
   const { user, addUser } = useUser();
 
   const { getCookie } = useCookie();
@@ -23,19 +23,19 @@ export const useAuth = () => {
     }
   };
 
-  const searchFlight = async (creds: Register) => {
+  const searchFlight = async (creds: SearchDetails) => {
     return await axios
-      .post(`${SEARCH_URL}/signup`, creds)
+      .get(`${SEARCH_URL}/flights`, { params: creds})
       .then((res) => {
         if (res.data?.data && res.data.data?.token) {
           addUser(res.data.data);
         };
-        return res.data as AuthResponse;
+        return res.data as SearchResponse;
       })
       .catch((err) => {
         if (err && err?.response && err.response?.data)
-          return { ...err.response.data, success: false } as AuthResponse;
-        else return err as AuthResponse;
+          return { ...err.response.data, success: false } as SearchResponse;
+        else return err as SearchResponse;
       });
   };
 
