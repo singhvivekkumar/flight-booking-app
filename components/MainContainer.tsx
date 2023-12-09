@@ -38,7 +38,7 @@ const MainContainer: React.FC = () => {
 	};
 
 	return (
-		<div className=" flex flex-col h-full w-full">
+		<section className=" flex flex-col h-full w-full">
 			{/* form */}
 			<Formik
 				initialValues={initialValues}
@@ -65,28 +65,29 @@ const MainContainer: React.FC = () => {
 							</div>
 
 							<div className=" flex flex-col justify-start items-baseline space-x-1 mb-5 ">
-								<label htmlFor="to" className=" text-lg my-2">To</label>
+								<label htmlFor="arrivalAirport" className=" text-lg my-2">To</label>
 								<Field
-									name="to"
+									name="arrivalAirport"
 									placeholder="Where to"
 									className=" bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 								/>
 								<ErrorMessage
-									name="name"
+									name="arrivalAirport"
 									component="p"
 									className=" text-sm italic text-red-600  "
 								/>
 							</div>
 
 							<div className=" flex flex-col justify-start items-baseline space-x-1 mb-5">
-								<label htmlFor="departure" className=" text-lg my-2">Departure</label>
+								<label htmlFor="departureTime" className=" text-lg my-2">Departure</label>
 								<Field
-									name="departure"
-									placeholder="Departure "
+									name="departureTime"
+                  type="date"
+									placeholder="Departure Date"
 									className="bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 								/>
 								<ErrorMessage
-									name="departure"
+									name="departureTime"
 									component="p"
 									className=" text-sm italic text-red-600  "
 								/>
@@ -96,6 +97,7 @@ const MainContainer: React.FC = () => {
 								<label htmlFor="traveller" className=" text-lg my-2">Traveller</label>
 								<Field
 									name="traveller"
+                  type="optoin"
 									placeholder="Traveller "
 									className="bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 								/>
@@ -106,30 +108,16 @@ const MainContainer: React.FC = () => {
 								/>
 							</div>
 
-              <div className=" flex flex-col justify-start items-baseline space-x-1 mb-5">
-								<label htmlFor="class" className=" text-lg my-2">class</label>
-								<Field
-									name="class"
-									placeholder="Class"
-									className="bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
-								/>
-								<ErrorMessage
-									name="class"
-									component="p"
-									className=" text-sm italic text-red-600  "
-								/>
-							</div>
-
 							<button
 								type="submit"
-								className="border w-full border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
-								Sign In
+								className="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
+								Search
 							</button>
 						</Form>
 					);
 				}}
 			</Formik>
-		</div>
+		</section>
 	);
 };
 
