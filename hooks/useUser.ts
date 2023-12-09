@@ -9,7 +9,7 @@ export const useUser = () => {
 
   const addUser = (user: AuthUser) => {    
     setUser(user);
-    setCookie("user", JSON.stringify(user));
+    setCookie("token", JSON.stringify(user.token));
   };
 
   const removeUser = () => {

@@ -25,7 +25,7 @@ const SignInForm: React.FC = () => {
 		email: z.string().email(),
 		password: z.string()
 			.min(8, "Password is too short - should be 8 chars minimum.")
-			.regex(/[a-zA-Z]/, "Password can only contain Latin letters."),
+			// .regex(/[a-zA-Z]/, "Password can only contain Latin letters."),
 	});
 
   useEffect( ()=> {}, [])

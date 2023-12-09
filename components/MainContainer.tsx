@@ -28,7 +28,7 @@ const MainContainer: React.FC = () => {
 	const handleSubmit = async (values: SearchDetails) => {
 		try {
 			const response = await searchFlight(values);
-			console.log("api data ", values, response.data);
+			console.log("api data ", response.data);
 			if (response.success) {
 				searchParams.getAll("search");
 			}
@@ -48,7 +48,7 @@ const MainContainer: React.FC = () => {
 					// console.log("sign up page",props);
 					return (
 						<Form
-							className=" flex bg-white rounded-2xl p-5 px-7 w-full "
+							className=" flex justify-around bg-white rounded-2xl p-5 px-7 w-full "
 							onSubmit={props.handleSubmit}>
 							<div className=" flex flex-col justify-start items-baseline space-x-1 mb-5 ">
 								<label htmlFor="departureAirport" className=" text-lg my-2">From</label>
@@ -110,7 +110,7 @@ const MainContainer: React.FC = () => {
 
 							<button
 								type="submit"
-								className="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
+								className="border border-slate-800 bg-slate-800 text-white rounded-md px-2 my-8 hover:bg-slate-600 ">
 								Search
 							</button>
 						</Form>

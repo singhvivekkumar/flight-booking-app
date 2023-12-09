@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/table";
 
 const page = () => {
+
+	
 	return (
 		<Table>
 			<TableCaption>A list of your recent invoices.</TableCaption>
@@ -26,6 +28,7 @@ const page = () => {
 				<TableRow>
 					<TableCell className="font-medium">INV001</TableCell>
 					<TableCell>Paid</TableCell>
+					<TableCell>Credit Card</TableCell>
 					<TableCell>Credit Card</TableCell>
 					<TableCell className="text-right">$250.00</TableCell>
 				</TableRow>

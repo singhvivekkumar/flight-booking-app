@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
 import { Providers } from "../providers";
 import MainContainer from "@/components/MainContainer";
+import { FlightProvider } from "@/contexts/FlightContext";
 
 export const metadata = {
 	title: "flight booking app",
@@ -17,11 +18,13 @@ export default function RootLayout({
 		<html lang="en">
 			<body>
 				<Providers>
-					<main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark lg:px-32 md:px-16 sm:px-8 ">
-						<Navbar />	
-						<MainContainer/>
-						{children}
-					</main>
+					<FlightProvider>
+						<main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark lg:px-32 md:px-16 sm:px-8 ">
+							<Navbar />
+							<MainContainer />
+							{children}
+						</main>
+					</FlightProvider>
 				</Providers>
 			</body>
 		</html>
