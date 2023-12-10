@@ -4,12 +4,11 @@ import { SearchResponse, SearchDetails } from "@/types/flight";
 import { FlightContext } from "@/contexts/FlightContext";
 import { useContext } from "react";
 import useCookie from "./useCookie";
-import { json } from "node:stream/consumers";
 
 export const useFlights = () => {
 
   const { setFlights } = useContext(FlightContext);
-  const { getCookie, removeCookie } = useCookie();
+  const { getCookie } = useCookie();
 
   const userToken = JSON.parse(`${getCookie("token")}`);
   // This is because these headers are typically managed by the browser itself or the server.
@@ -28,7 +27,6 @@ export const useFlights = () => {
         if (res.data?.data) {
           setFlights(res.data.data);
         };
-        removeCookie("user");
         return res.data as SearchResponse;
       })
       .catch((err) => {
@@ -38,5 +36,9 @@ export const useFlights = () => {
       });
   };
 
-  return { searchFlight };
+  const parseDate = (date: Date) => {
+		return (date).toLocaleTimeString();
+	}
+
+  return { searchFlight, parseDate };
 };

@@ -3,15 +3,14 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as z from "zod";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toFormikValidationSchema } from "zod-formik-adapter";
-import { useAuth } from "@/hooks/useAuth";
 import { SearchDetails } from "@/types/flight";
 import { useFlights } from "@/hooks/useFlights";
 
 const MainContainer: React.FC = () => {
 	const { searchFlight } = useFlights();
-	const searchParams = useSearchParams();
+	const router = useRouter();
 
 	const initialValues: SearchDetails = {
 		departureAirport: "Jayprakash",
@@ -30,7 +29,7 @@ const MainContainer: React.FC = () => {
 			const response = await searchFlight(values);
 			console.log("api data ", response.data);
 			if (response.success) {
-				searchParams.getAll("search");
+				router.push("/flights")
 			}
 		} catch (error) {
 			console.log("problem in api", error);

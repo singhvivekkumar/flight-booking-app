@@ -1,11 +1,11 @@
 "use client";
 
 import { ReactNode, createContext, useState } from "react";
-import { SearchResponse } from "@/types/flight";
+import { Flight } from "@/types/flight";
 
 interface FSearchContext {
-  flights: SearchResponse | null;
-  setFlights: (flight: SearchResponse | null) => void;
+  flights: Array<Flight> | null;
+  setFlights: (flight: Array<Flight> | null) => void;
 }
 
 export const FlightContext = createContext<FSearchContext>({
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export const FlightProvider = ({ children }: Props) => {
-  const [flights, setFlights] = useState<SearchResponse | null>(null);
+  const [flights, setFlights] = useState<Array<Flight> | null>(null);
 
   return (
     <FlightContext.Provider value={{ flights, setFlights }}>
