@@ -12,23 +12,12 @@ import {
 } from "@/components/ui/table";
 import { FlightContext } from "@/contexts/FlightContext";
 import FormatDate from "@/components/FormatDate";
-import { useRouter } from "next/navigation";
-import { Flight } from "@/types/flight";
+import Link from "next/link";
 
 const FlightTable = () => {
 
-	const router = useRouter();
 	const { flights } = useContext(FlightContext);
 
-	const handleDetailFlight = (flight: Flight) => {
-		try {
-
-
-			router.push(`${flight.id}`)
-		} catch (error) {
-			
-		}
-	}
 
 	return (
 		<Table className="">
@@ -43,23 +32,26 @@ const FlightTable = () => {
 			</TableHeader>
 			<TableBody>
 				{flights?.map((flight) => {
-					const departureTime = flight.departureTime?.toLocaleString();
+					const departureTime =
+						flight.departureTime?.toLocaleString();
 					const arrivalTime = flight.arrivalTime?.toLocaleString();
 					return (
-						<TableRow key={flight.flightNumber} onClick={()=>handleDetailFlight(flight)}>
-							<TableCell className="font-medium">
-								{flight.flightNumber}
-							</TableCell>
-							<TableCell>
-								<FormatDate dateString={departureTime}/>
-							</TableCell>
-							<TableCell>
-								<FormatDate dateString={arrivalTime}/>
-							</TableCell>
-							<TableCell className="text-right">
-								{flight.price}.00
-							</TableCell>
-						</TableRow>
+						<Link href={`/${flight.id}`} key={flight.flightNumber}>
+							<TableRow >
+								<TableCell className="font-medium">
+									{flight.flightNumber}
+								</TableCell>
+								<TableCell>
+									<FormatDate dateString={departureTime} />
+								</TableCell>
+								<TableCell>
+									<FormatDate dateString={arrivalTime} />
+								</TableCell>
+								<TableCell className="text-right">
+									{flight.price}.00
+								</TableCell>
+							</TableRow>
+						</Link>
 					);
 				})}
 			</TableBody>

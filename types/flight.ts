@@ -1,6 +1,6 @@
 export type Booking = {
-	id: number;
-	flightId?: number;
+	id?: number;
+	flightId: number | undefined;
 	userId?: number;
 	status?: "InProcess" | "Booked" | "Cancelled";
 	numberOfSeats?: number;
