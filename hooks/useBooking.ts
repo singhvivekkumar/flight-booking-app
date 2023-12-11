@@ -3,29 +3,15 @@ import { BOOKING_URL } from "@/utils/config";
 import axios from "axios";
 import { AuthResponse, Login, Register } from "@/types/auth";
 import useCookie from "./useCookie";
+import { Flight } from "@/types/flight";
 
 export const useAuth = () => {
   const { user, addUser } = useUser();
 
-  const { getCookie } = useCookie();
 
-  const refresh = () => {
-    let existingUser = null;
-    const getFromCookie = async () => (existingUser = getCookie("user"));
-    getFromCookie();
-
-    if (existingUser) {
-      try {
-        addUser(JSON.parse(existingUser));
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
-
-  const booking = async (creds: Register) => {
+  const booking = async () => {
     return await axios
-      .post(`${BOOKING_URL}/signup`, creds)
+      .post(`${BOOKING_URL}/signup`, )
       .then((res) => {
         if (res.data?.data && res.data.data?.token) {
           addUser(res.data.data);
@@ -39,5 +25,5 @@ export const useAuth = () => {
       });
   };
 
-  return { booking, refresh };
+  return { booking };
 };

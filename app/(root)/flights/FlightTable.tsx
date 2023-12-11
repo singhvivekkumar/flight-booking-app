@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useContext, useState } from "react";
+import React, { SyntheticEvent, useContext } from "react";
 import {
 	Table,
 	TableBody,
@@ -11,22 +11,27 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 import { FlightContext } from "@/contexts/FlightContext";
-import { format, parseISO } from "date-fns";
 import FormatDate from "@/components/FormatDate";
+import { useRouter } from "next/navigation";
+import { Flight } from "@/types/flight";
 
 const FlightTable = () => {
+
+	const router = useRouter();
 	const { flights } = useContext(FlightContext);
 
-	// Request a weekday along with a long date
-	const options = {
-		weekday: "long",
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	};
+	const handleDetailFlight = (flight: Flight) => {
+		try {
+
+
+			router.push(`${flight.id}`)
+		} catch (error) {
+			
+		}
+	}
 
 	return (
-		<Table className=" w-3/5">
+		<Table className="">
 			<TableCaption>A list of your recent invoices.</TableCaption>
 			<TableHeader>
 				<TableRow>
@@ -41,7 +46,7 @@ const FlightTable = () => {
 					const departureTime = flight.departureTime?.toLocaleString();
 					const arrivalTime = flight.arrivalTime?.toLocaleString();
 					return (
-						<TableRow key={flight.flightNumber}>
+						<TableRow key={flight.flightNumber} onClick={()=>handleDetailFlight(flight)}>
 							<TableCell className="font-medium">
 								{flight.flightNumber}
 							</TableCell>
