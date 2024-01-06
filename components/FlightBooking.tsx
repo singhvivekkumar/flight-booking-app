@@ -5,8 +5,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as z from  "zod";
 import { useRouter } from "next/navigation";
 import { toFormikValidationSchema } from "zod-formik-adapter";
-import { useAuth } from "@/hooks/useAuth";
-import { Register, User } from "@/types/auth";
 import { FlightContext } from "@/contexts/FlightContext";
 import { Booking, Flight } from "@/types/flight";
 import { useUser } from "@/hooks/useUser";
