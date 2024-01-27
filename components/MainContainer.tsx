@@ -9,7 +9,7 @@ import { SearchDetails } from "@/types/flight";
 import { useFlights } from "@/hooks/useFlights";
 
 const MainContainer: React.FC = () => {
-	const { searchFlight } = useFlights();
+	const { searchFlights } = useFlights();
 	const router = useRouter();
 
 	const initialValues: SearchDetails = {
@@ -26,7 +26,7 @@ const MainContainer: React.FC = () => {
 
 	const handleSubmit = async (values: SearchDetails) => {
 		try {
-			const response = await searchFlight(values);
+			const response = await searchFlights(values);
 			console.log("api data ", response.data);
 			if (response.success) {
 				router.push("/flights")

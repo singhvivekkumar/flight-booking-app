@@ -10,7 +10,8 @@ export const useFlights = () => {
   const { setFlights } = useContext(FlightContext);
   const { getCookie } = useCookie();
 
-  const userToken = JSON.parse(`${getCookie("token")}`);
+  // const userToken = JSON.parse(`${getCookie("token")}`);
+  const userToken = getCookie("token");
   // This is because these headers are typically managed by the browser itself or the server.
   // const contentLength = Buffer.byteLength(JSON.stringify(userToken));
 
