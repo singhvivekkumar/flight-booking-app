@@ -1,7 +1,5 @@
 import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
-import { Providers } from "../providers";
-import MainContainer from "@/components/MainContainer";
 import { FlightProvider } from "@/contexts/FlightContext";
 
 export const metadata = {
@@ -15,17 +13,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body>
-				<Providers>
-					<FlightProvider>
-						<main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark lg:px-32 md:px-16 sm:px-8 ">
-							<Navbar />	
-							{children}
-						</main>
-					</FlightProvider>
-				</Providers>
-			</body>
-		</html>
+		<main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark lg:px-32 md:px-16 sm:px-8 ">
+			<FlightProvider>
+				<Navbar />
+				{children}
+			</FlightProvider>
+		</main>
 	);
 }

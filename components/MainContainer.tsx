@@ -3,7 +3,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as z from "zod";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { SearchDetails } from "@/types/flight";
 import { useFlights } from "@/hooks/useFlights";
