@@ -1,6 +1,6 @@
 import React from "react";
 import { FaDiscord, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import LogInForm from "./SignInFrom";
+import LogInForm from "../../../components/SignInFrom";
 
 const SignInPage = () => {
 	return (

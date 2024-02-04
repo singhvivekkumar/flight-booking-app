@@ -1,11 +1,9 @@
 import React from 'react'
-import FlightTable from './FlightTable'
+import FlightTable from '../../../components/FlightTable'
 
 const page = () => {
   return (
-	<>
 		<FlightTable/>
-  </>
   )
 }
 
