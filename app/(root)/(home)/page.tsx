@@ -1,12 +1,8 @@
-import MainContainer from '@/components/MainContainer'
-import React from 'react'
+import MainContainer from "@/components/MainContainer";
+import React from "react";
 
 const page = () => {
-  return (
-	<>
-    <MainContainer />
-  </>
-  )
-}
+	return <MainContainer />;
+};
 
-export default page
+export default page;

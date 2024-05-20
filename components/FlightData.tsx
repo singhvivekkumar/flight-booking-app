@@ -31,7 +31,7 @@ const FlightData = () => {
 			.regex(/[a-zA-Z]/, "Password can only contain Latin letters."),
 	});
 
-	const handleSubmit = async (values ) => {
+	const handleSubmit = async (values: any ) => {
 		try {
 			const response = await (values);
 			console.log("api data ", values, response.data);

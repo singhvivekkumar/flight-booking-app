@@ -13,11 +13,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark lg:px-32 md:px-16 sm:px-8 ">
-			<FlightProvider>
-				<Navbar />
+		<FlightProvider>
+			<Navbar />
+			<main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark lg:px-32 md:px-16 sm:px-8 ">
 				{children}
-			</FlightProvider>
-		</main>
+			</main>
+		</FlightProvider>
 	);
 }

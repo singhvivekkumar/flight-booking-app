@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import UserIcon from "./client/UserIcon";
 import { BsAirplane } from "react-icons/bs";
 import HamburgerMenu from "./client/HamburgerMenu";
+// import { useTheme } from "next-themes";
+// import { Theme } from "./client/Theme";
 
 interface Props {
 	href: string;
@@ -26,6 +28,7 @@ const CustomeLink = ({ href, title, className = "" }: Props) => {
 
 const Navbar = () => {
 
+	// const { setTheme } = useTheme();
 
 	return (
 		<header className="w-full py-10 font-medium flex items-center justify-between dark:text-light relative ">
@@ -45,6 +48,9 @@ const Navbar = () => {
 					<CustomeLink href="/bus" title="Bus" className=" ml-4 " />
 				</nav>
 			</div>
+
+			{/* theme */}
+			{/* <Theme/> */}
 
 			{/* user */}
 			<UserIcon />
