@@ -2,16 +2,17 @@ import { useUser } from "./useUser";
 import { AUTH_URL } from "@/utils/config";
 import axios from "axios";
 import { AuthResponse, Login, Register } from "@/types/auth";
-import useCookie from "./useCookie";
+import { useRouter } from "next/navigation";
+import useLocalStorage from "./useLocalStorage";
 
 export const useAuth = () => {
   const { user, addUser, removeUser } = useUser();
-
-  const { getCookie } = useCookie();
+  const router = useRouter();
+  const { getUserData } = useLocalStorage();
 
   const refresh = () => {
     let existingUser = null;
-    const getFromCookie = async () => (existingUser = getCookie("user"));
+    const getFromCookie = async () => (existingUser = getUserData("user"));
     getFromCookie();
 
     if (existingUser) {

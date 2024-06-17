@@ -1,20 +1,18 @@
-import { useCookies } from "next-client-cookies";
+import { getCookie, setCookie, deleteCookie } from "cookies-next";
 
 const useCookie = () => {
-  const cookies = useCookies();
 
-  const getCookie = (key: string) => cookies.get(key);
+  const getTheCookie = (key: string) => getCookie(key);
 
-  const setCookie = (key: string, value: string) =>
-    cookies.set(key, value, {
-      expires: 2,
-      sameSite: "None",
-      secure: true,
+  const setTheCookie = (key: string, value: string) =>
+    setCookie(key, value, {
+      path: "/",
+      httpOnly: true
     });
 
-  const removeCookie = (key: string) => cookies.remove(key);
+  const removeTheCookie = (key: string) => deleteCookie(key);
 
-  return { setCookie, getCookie, removeCookie };
+  return { setTheCookie, getTheCookie, removeTheCookie };
 };
 
 export default useCookie;

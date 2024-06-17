@@ -3,12 +3,11 @@
 import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as z from  "zod";
-import { FcGoogle } from "react-icons/fc";
-import { BsApple } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { useAuth } from "@/hooks/useAuth";
 import { Login } from "@/types/auth";
+import { Button } from "./ui/button";
 
 const SignInForm: React.FC = () => {
 
@@ -17,8 +16,8 @@ const SignInForm: React.FC = () => {
   const { login } = useAuth();
 
 	const initialValues: Login = {
-		email: "",
-		password: "",
+		email: "support@gmail.com",
+		password: "12345678",
 	};
 
 	const validationSchema = z.object({
@@ -30,12 +29,12 @@ const SignInForm: React.FC = () => {
 
   useEffect( ()=> {}, [])
 
-	const handleSubmit = async (values: Login) => {
+	const handleSubmit = async (values: Login): Promise<void> => {
     try {
       const response = await login(values);
       console.log("api data ", response)
       if (response.success) {
-        router.push("/");
+        router.push("/dashboard");
       } 
     } catch (error) {
       // call toaster
@@ -47,18 +46,10 @@ const SignInForm: React.FC = () => {
 		<div className=" flex flex-col h-full w-full">
 			{/* sign in */}
 			<div className=" py-4 self-center ">
-				<h1 className=" text-3xl font-bold">Sign In</h1>
-				<p className=" text-lg ">Sign in to your account</p>
+				<h1 className=" text-2xl font-bold">Sign In</h1>
+				<p className=" text-lg ">Enter your email below to sign in to your account</p>
 			</div>
-			{/* button */}
-			<div className="flex justify-around space-x-4 text-xs ">
-				<button onClick={()=> router.push("/dashboard")} className=" inline-flex items-center p-1 px-4 text-slate-500 bg-white rounded-xl border border-slate-300 ">
-					<FcGoogle className=" text-2xl lg:pr-2" /> Sign In with Google
-				</button>
-				<button onClick={()=> router.push("/dashboard")} className=" inline-flex items-center p-1 px-4 text-slate-500 bg-white rounded-xl border border-slate-300">
-					<BsApple className=" text-2xl lg:pr-2" /> Sign In with Apple
-				</button>
-			</div>
+
 			{/* form */}
 			<div className="mt-8 mb-4">
 				<Formik
@@ -104,11 +95,12 @@ const SignInForm: React.FC = () => {
 									/>
 								</div>
 
-								<button
+								<Button
 									type="submit"
+									// disabled={isPending}
 									className="border w-full border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
 									Sign In
-								</button>
+								</Button>
 							</Form>
 						);
 					}}

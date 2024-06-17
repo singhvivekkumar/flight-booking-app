@@ -1,6 +1,6 @@
 import React from "react";
-import { FaDiscord, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import LogInForm from "../../../components/SignInFrom";
+import LogInForm from "@/components/SignInFrom";
+import MediaIcon from "@/components/client/MediaIcon";
 
 const SignInPage = () => {
 	return (
@@ -11,29 +11,23 @@ const SignInPage = () => {
 			</div>
 			<div className="hidden lg:flex flex-col bg-gradient-to-b from-[#4285F4] to-[#286DE0] origin-top-left -skew-x-[9deg] w-1/2 h-full p-16 justify-between  text-white font-sans  ">
 				<div>
-					<h2 className=" uppercase text-3xl font-bold skew-x-[9deg]">logo</h2>
+					<h2 className=" uppercase text-3xl font-bold skew-x-[9deg]">
+						logo
+					</h2>
 				</div>
 				<div>
-					<h1 className=" text-center text-7xl font-bold skew-x-[9deg] ">Flight Booking</h1>
+					<h1 className=" text-center text-7xl font-bold skew-x-[9deg] ">
+						Flight Booking
+					</h1>
 				</div>
-				<div className=" flex flex-row justify-center items-center space-x-10 ml-10 text-4xl skew-x-[9deg] ">
-					<FaGithub />
-					<FaTwitter />
-					<FaLinkedin />
-					<FaDiscord />
-				</div>
+				<MediaIcon />
 			</div>
 			<div className=" flex justify-center items-center w-full lg:w-1/2 h-full ">
 				<div className=" w-4/5 md:w-3/5 lg:w-3/5 ">
 					<LogInForm />
 				</div>
 			</div>
-			<div className=" flex flex-row lg:hidden py-10 space-x-5 float-right items-center justify-center text-4xl ">
-					<FaGithub />
-					<FaTwitter />
-					<FaLinkedin />
-					<FaDiscord />
-				</div>
+			<MediaIcon />
 		</div>
 	);
 };

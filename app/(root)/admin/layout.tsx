@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
-import { Providers } from "../providers";
 import Navbar from "@/components/Navbar";
+import { Providers } from "@/app/providers";
 
 export const metadata = {
 	title: "flight booking app",

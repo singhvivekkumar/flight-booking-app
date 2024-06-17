@@ -50,7 +50,6 @@ const Navbar = () => {
 			</div>
 
 			{/* theme */}
-			{/* <Theme/> */}
 
 			{/* user */}
 			<UserIcon />

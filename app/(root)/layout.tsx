@@ -1,6 +1,7 @@
+import { AuthGuard } from "@/components/auth/AuthGuard";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
-import { FlightProvider } from "@/contexts/FlightContext";
 
 export const metadata = {
 	title: "flight booking app",
@@ -13,11 +14,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<FlightProvider>
+		<AuthGuard>
 			<Navbar />
 			<main className=" w-full h-full inline-block z-0 bg-light dark:bg-dark lg:px-32 md:px-16 sm:px-8 ">
 				{children}
 			</main>
-		</FlightProvider>
+			<Footer />
+		</AuthGuard>
 	);
 }

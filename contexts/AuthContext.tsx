@@ -10,7 +10,7 @@ interface TAuthContext {
 }
 
 export const AuthContext = createContext<TAuthContext>({
-  user: null,
+  user: null, 
   setUser: () => {},
 });
 
@@ -20,12 +20,12 @@ interface Props {
 
 export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<AuthUser | null>(null);
-  const { getCookie } = useCookie();
+  const { getTheCookie } = useCookie();
 
   useEffect(() => {
     if (!user) {
       let existingUser = null;
-      const getFromCookie = async () => (existingUser = getCookie("user"));
+      const getFromCookie = async () => (existingUser = getTheCookie("user"));
       getFromCookie();
 
       if (existingUser) {
