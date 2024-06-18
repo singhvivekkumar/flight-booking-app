@@ -2,15 +2,19 @@
 
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useUser } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
 
 const UserIcon = () => {
-  const { user } = useUser();
+  const { authUser } = useAuth();
+	if (!authUser) {
+		return null;
+	}
+	// console.log(authUser);
 	return (
 		<button onClick={ ()=> {}}>
 			<Avatar>
 				<AvatarImage src="" />
-				<AvatarFallback>{user?.user.name.charAt(0).toUpperCase()}</AvatarFallback>
+				<AvatarFallback>{authUser?.user?.name?.charAt(0).toUpperCase()}</AvatarFallback>
 			</Avatar>
 		</button>
 	);

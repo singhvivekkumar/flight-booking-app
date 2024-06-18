@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 export interface AuthGuardProps {
   children: React.ReactNode;
@@ -10,13 +11,17 @@ export interface AuthGuardProps {
 
 export function AuthGuard({ children }: AuthGuardProps): React.JSX.Element | null {
   const router = useRouter();
-  const { user, refresh } = useAuth();
+  const { authUser, refresh } = useAuth();
+  const { getUserData } = useLocalStorage();
   const [isChecking, setIsChecking] = React.useState<boolean>(true);
 
   const checkPermissions = async (): Promise<void> => {
 		try {
-			await refresh();
-			if (!user) {
+      const last = getUserData("user");
+      console.log(last);
+			refresh();
+      console.log("user in auth",authUser);
+			if (!authUser) {
 				router.replace("/sign-in");
 			}
 			setIsChecking(false);
@@ -30,7 +35,7 @@ export function AuthGuard({ children }: AuthGuardProps): React.JSX.Element | nul
       // noop
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps -- Expected
-  }, [user]);
+  }, []);
 
   if (isChecking) {
     return null;

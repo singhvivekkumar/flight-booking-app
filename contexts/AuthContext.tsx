@@ -2,46 +2,57 @@
 
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { AuthUser } from "@/types/auth";
-import useCookie from "@/hooks/useCookie";
+import { useAuth } from "@/hooks/useAuth";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { useRouter } from "next/navigation";
 
 interface TAuthContext {
-  user: AuthUser | null;
-  setUser: (user: AuthUser | null) => void;
+	authUser: AuthUser | null;
+	setAuthUser: (user: AuthUser | null) => void;
 }
 
 export const AuthContext = createContext<TAuthContext>({
-  user: null, 
-  setUser: () => {},
+	authUser: null,
+	setAuthUser: () => {},
 });
 
 interface Props {
-  children: ReactNode;
+	children: ReactNode;
 }
 
 export const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<AuthUser | null>(null);
-  const { getTheCookie } = useCookie();
+	const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+	const { getUserData } = useLocalStorage();
+	const router = useRouter();
 
-  useEffect(() => {
-    if (!user) {
-      let existingUser = null;
-      const getFromCookie = async () => (existingUser = getTheCookie("user"));
-      getFromCookie();
+	useEffect(() => {
+		if (!authUser) {
+			let existingUser = null;
+			const getFromLocalStorage = () => {
+				existingUser = getUserData("user");
+			};
 
-      if (existingUser) {
-        try {
-          setUser(JSON.parse(existingUser));
-        } catch (e) {
-          console.log(e);
-        }
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+			getFromLocalStorage();
+			console.log("refresh : ", existingUser);
 
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+			if (existingUser) {
+				try {
+					setAuthUser(JSON.parse(existingUser));
+					console.log("auth set : ", authUser);
+					router.push("/dashboard");
+				} catch (e) {
+					console.log(e);
+				}
+			} else {
+				router.replace("/sign-in");
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	return (
+		<AuthContext.Provider value={{ authUser, setAuthUser }}>
+			{children}
+		</AuthContext.Provider>
+	);
 };

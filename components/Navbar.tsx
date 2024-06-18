@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import UserIcon from "./client/UserIcon";
 import { BsAirplane } from "react-icons/bs";
 import HamburgerMenu from "./client/HamburgerMenu";
+import { useAuth } from "@/hooks/useAuth";
 // import { useTheme } from "next-themes";
 // import { Theme } from "./client/Theme";
 
@@ -29,9 +30,12 @@ const CustomeLink = ({ href, title, className = "" }: Props) => {
 const Navbar = () => {
 
 	// const { setTheme } = useTheme();
-
+	const { authUser } = useAuth();
+	// if(!authUser) {
+	// 	return null;
+	// }
 	return (
-		<header className="w-full py-10 font-medium flex items-center justify-between dark:text-light relative ">
+		<header className="w-full py-10 md:px-10 lg:px-32 font-medium flex items-center justify-between dark:text-light relative ">
 			{/* logo */}
 			<div className=" text-5xl mr-4 rotate-90 scale-y-100 ">
 				<BsAirplane />

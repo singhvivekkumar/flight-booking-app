@@ -4,19 +4,20 @@ import { AuthUser } from "@/types/auth";
 import useLocalStorage from './useLocalStorage';
 
 export const useUser = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { authUser, setAuthUser } = useContext(AuthContext);
   const { setUserData, removeUserData } = useLocalStorage();
 
 
-  const addUser = (user: AuthUser) => {    
-    setUser(user);
-    setUserData("user", JSON.stringify(user));
+  const addUser = (authUser: AuthUser) => {    
+    setAuthUser(authUser);
+    console.log("use user",authUser);
+    setUserData("user", JSON.stringify(authUser));
   };
 
   const removeUser = () => {
-    setUser(null);
+    setAuthUser(null);
     removeUserData("user");
   };
 
-  return { user, addUser, removeUser };
+  return { authUser, addUser, removeUser };
 };
