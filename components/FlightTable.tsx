@@ -1,11 +1,12 @@
 "use client";
 
-import React, { SyntheticEvent, useContext } from "react";
+import React, { useContext } from "react";
 import {
 	Table,
 	TableBody,
 	TableCaption,
 	TableCell,
+	TableFooter,
 	TableHead,
 	TableHeader,
 	TableRow,
@@ -33,8 +34,7 @@ const FlightTable = () => {
 			</TableHeader>
 			<TableBody>
 				{flights?.map((flight) => {
-					const departureTime =
-						flight.departureTime?.toLocaleString();
+					const departureTime = flight.departureTime?.toLocaleString();
 					const arrivalTime = flight.arrivalTime?.toLocaleString();
 					return (
 						<Link href={`/${flight.id}`} key={flight.flightNumber}>
@@ -56,6 +56,12 @@ const FlightTable = () => {
 					);
 				})}
 			</TableBody>
+			<TableFooter>
+        <TableRow>
+          <TableCell colSpan={3}>Total</TableCell>
+          <TableCell className="text-right">$2,500.00</TableCell>
+        </TableRow>
+      </TableFooter>
 		</Table>
 	);
 };

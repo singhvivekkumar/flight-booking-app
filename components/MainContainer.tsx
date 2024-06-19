@@ -31,7 +31,7 @@ const MainContainer: React.FC = () => {
 			const response = await searchFlights(values);
 			console.log("api data ", response);
 			if (response.success) {
-				
+
 				router.push("/flights")
 			} else {
 				logout();
@@ -53,14 +53,14 @@ const MainContainer: React.FC = () => {
 					// console.log("sign up page",props);
 					return (
 						<Form
-							className=" flex justify-around bg-white rounded-2xl p-5 px-7 w-full "
+							className=" flex justify-around rounded-2xl p-5 px-7 w-full "
 							onSubmit={props.handleSubmit}>
 							<div className=" flex flex-col justify-start items-baseline space-x-1 mb-5 ">
 								<label htmlFor="departureAirport" className=" text-lg my-2">From</label>
 								<Field
 									name="departureAirport"
 									placeholder="From where"
-									className=" bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
+									className=" bg-slate-200/50 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 								/>
 								<ErrorMessage
 									name="departureAirport"
@@ -74,7 +74,7 @@ const MainContainer: React.FC = () => {
 								<Field
 									name="arrivalAirport"
 									placeholder="Where to"
-									className=" bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
+									className=" bg-slate-200/50 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 								/>
 								<ErrorMessage
 									name="arrivalAirport"
@@ -89,7 +89,7 @@ const MainContainer: React.FC = () => {
 									name="departureTime"
                   type="date"
 									placeholder="Departure Date"
-									className="bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
+									className="bg-slate-200/50 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 								/>
 								<ErrorMessage
 									name="departureTime"
@@ -104,7 +104,7 @@ const MainContainer: React.FC = () => {
 									name="traveller"
                   type="optoin"
 									placeholder="Traveller "
-									className="bg-slate-200/70 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
+									className="bg-slate-200/50 hover:bg-slate-300/60 w-full rounded-md  focus:outline-none p-2 md:px-2 "
 								/>
 								<ErrorMessage
 									name="traveller"

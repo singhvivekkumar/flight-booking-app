@@ -2,7 +2,7 @@ import { useUser } from "./useUser";
 import { AUTH_URL } from "@/utils/config";
 import axios from "axios";
 import { AuthResponse, Login, Register } from "@/types/auth";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import useLocalStorage from "./useLocalStorage";
 
 export const useAuth = () => {
@@ -72,6 +72,7 @@ export const useAuth = () => {
 
 	const logout = () => {
 		removeUser();
+		refresh();
 	};
 
 	return { authUser, login, register, logout, refresh };

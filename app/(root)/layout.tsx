@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { FlightProvider } from "@/contexts/FlightContext";
+import "@/styles/globals.css";
 
 export const metadata = {
 	title: "flight booking app",

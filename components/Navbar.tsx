@@ -55,7 +55,7 @@ const Navbar = () => {
 
 			{/* theme */}
 
-			{/* user */}
+			{/* user */} 
 			<UserIcon />
 
 		</header>
