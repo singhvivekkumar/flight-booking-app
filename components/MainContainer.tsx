@@ -7,10 +7,12 @@ import { useRouter } from "next/navigation";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { SearchDetails } from "@/types/flight";
 import { useFlights } from "@/hooks/useFlights";
+import { useAuth } from "@/hooks/useAuth";
 
 const MainContainer: React.FC = () => {
 	const { searchFlights } = useFlights();
 	const router = useRouter();
+	const { logout, refresh } = useAuth();
 
 	const initialValues: SearchDetails = {
 		departureAirport: "Jayprakash",
@@ -27,9 +29,13 @@ const MainContainer: React.FC = () => {
 	const handleSubmit = async (values: SearchDetails) => {
 		try {
 			const response = await searchFlights(values);
-			console.log("api data ", response.data);
+			console.log("api data ", response);
 			if (response.success) {
+				
 				router.push("/flights")
+			} else {
+				logout();
+				refresh();
 			}
 		} catch (error) {
 			console.log("problem in api", error);

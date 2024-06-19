@@ -3,15 +3,17 @@ import axios from "axios";
 import { SearchResponse, SearchDetails } from "@/types/flight";
 import { FlightContext } from "@/contexts/FlightContext";
 import { useContext } from "react";
-import useCookie from "./useCookie";
+import { useAuth } from "./useAuth";
 
 export const useFlights = () => {
 
   const { setFlights } = useContext(FlightContext);
-  const { getCookie } = useCookie();
+  // const { getUserData } = useLocalStorage();
 
   // const userToken = JSON.parse(`${getCookie("token")}`);
-  const userToken = getCookie("token");
+  // const userToken = getUserData("user");
+  const {authUser} = useAuth();
+  const token = authUser?.token;
   // This is because these headers are typically managed by the browser itself or the server.
   // const contentLength = Buffer.byteLength(JSON.stringify(userToken));
 
@@ -21,12 +23,13 @@ export const useFlights = () => {
         params: creds,
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': userToken
+          'x-access-token': token
         },
       })
       .then((res) => {
-        if (res.data?.data) {
-          setFlights(res.data.data);
+        console.log("res useFlight : ",res)
+        if (res?.data?.data) {
+          setFlights(res?.data?.data);
         };
         return res.data as SearchResponse;
       })
@@ -42,7 +45,7 @@ export const useFlights = () => {
       .get(`${SEARCH_URL}/flights/${flightId}`,  {
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': userToken
+          'x-access-token': token
         },
       })
       .then((res) => {
@@ -64,7 +67,7 @@ export const useFlights = () => {
         params: creds,
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': userToken
+          'x-access-token': token
         },
       })
       .then((res) => {
@@ -86,7 +89,7 @@ export const useFlights = () => {
         params: creds,
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': userToken
+          'x-access-token': token
         },
       })
       .then((res) => {

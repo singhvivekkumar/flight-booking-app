@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: Props) => {
 			if (existingUser) {
 				try {
 					setAuthUser(JSON.parse(existingUser));
-					console.log("auth set : ", authUser);
+					// console.log("auth set : ", authUser);
 					router.push("/dashboard");
 				} catch (e) {
 					console.log(e);

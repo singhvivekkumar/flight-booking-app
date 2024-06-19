@@ -15,10 +15,11 @@ import FormatDate from "@/components/FormatDate";
 import Link from "next/link";
 
 const FlightTable = () => {
-
 	const { flights } = useContext(FlightContext);
-
-
+	console.log(flights);
+	if (!flights) {
+		return;
+	}
 	return (
 		<Table className="">
 			<TableCaption>A list of your recent invoices.</TableCaption>
@@ -37,7 +38,7 @@ const FlightTable = () => {
 					const arrivalTime = flight.arrivalTime?.toLocaleString();
 					return (
 						<Link href={`/${flight.id}`} key={flight.flightNumber}>
-							<TableRow >
+							<TableRow>
 								<TableCell className="font-medium">
 									{flight.flightNumber}
 								</TableCell>

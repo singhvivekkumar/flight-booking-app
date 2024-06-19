@@ -22,7 +22,7 @@ export type Flight = {
 }
 
 export type SearchResponse = {
-	data: Array<Flight>;
+	data: Array<Flight> | null;
 	message?: string;
 	success?: boolean;
 }
